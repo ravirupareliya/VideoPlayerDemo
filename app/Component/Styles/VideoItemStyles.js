@@ -23,7 +23,7 @@ export default StyleSheet.create({
     listImage: {
         flex: 1,
         borderWidth: 1,
-        borderRadius: 20,
+        borderRadius: 10,
         borderColor: Colors.lightGrey
     },
     playIcon: {
@@ -34,6 +34,12 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
     playIconButton: {
-        opacity: 0.5
-    }
+        opacity: 0.7
+    },
+    shareIcon:{
+        padding:Metrics.smallMargin
+    },
+    likeIcon:{
+        padding:Metrics.smallMargin
+    },
 })

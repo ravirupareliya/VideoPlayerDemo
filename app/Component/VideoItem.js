@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { CachedImage } from 'react-native-cached-image'
@@ -7,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Video from 'react-native-video'
 
 import styles from './Styles/VideoItemStyles'
-import { Colors } from '../Themes';
+import { Colors, Metrics } from '../Themes';
 
 export default class VideoItem extends Component {
     constructor(props) {
@@ -15,20 +13,23 @@ export default class VideoItem extends Component {
     }
 
     render() {
-        const { data, onPress } = this.props
+        const { data, onPress,onShare } = this.props
         return (
-            <TouchableOpacity style={styles.listItem} onPress={onPress}>
+            <View style={styles.listItem} >
                 <View style={styles.listItemInnerView}>
-
                     <Text numberOfLines={1} style={styles.listText}>{data.title}</Text>
-                    <View style={styles.listImageView}>
+                    <TouchableOpacity style={styles.listImageView} onPress={onPress}>
                         <CachedImage style={styles.listImage} source={{ uri: data.thumbnail_url }} />
                         <View style={styles.playIcon}>
                             <Icon name="play-circle" size={50} color={Colors.red} style={styles.playIconButton} />
                         </View>
+                    </TouchableOpacity>
+                    <View style={{ flexDirection: 'row',justifyContent:'space-around' }}>
+                        <Icon name={'whatsapp'} size={35} style={styles.shareIcon} onPress={onShare} />
+                        <Icon name={'heart'} size={35} style={styles.likeIcon} />
                     </View>
                 </View>
-            </TouchableOpacity>
+            </View>
         );
     }
 }

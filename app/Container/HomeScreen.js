@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator, FlatList } from 'react-native';
+import { Text, View, ActivityIndicator, FlatList,Linking } from 'react-native';
 import { fetchVideos } from '../Redux/HomeDataRedux'
 import VideoItem from '../Component/VideoItem'
 
@@ -31,6 +31,11 @@ class HomeScreen extends Component {
         })
     }
 
+    shareItem(item){
+        var text= "Checkout this video " + item.video_url
+        Linking.openURL(`whatsapp://send?text=${text}`);
+    }
+
     render() {
         return (
             <View style={styles.mainContainer}>
@@ -41,6 +46,7 @@ class HomeScreen extends Component {
                             renderItem={({ item, index }) =>
                                 <VideoItem data={item}
                                     onPress={() => this.props.navigation.navigate('HomeDetailScreen',{index:index})}
+                                    onShare={()=>this.shareItem(item)}
                                 />
                             }
                             onEndReached={this.handleLoadMore}
